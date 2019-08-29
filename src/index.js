@@ -5,20 +5,20 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from './Context';
-import Home from './components/Home';
+import General from './components/General';
+import Withdrawn from './components/Withdrawn';
+import Summary from './components/Summary';
 
 
 ReactDOM.render(
     <Provider>
         <BrowserRouter>
             <App>
-                <Route exact path='/' component={Home} />
+                <Route exact path='/general' component={General} />
+                <Route exact path='/withdrawn' component={Withdrawn} />
+                <Route exact path='/summary' component={Summary} />
             </App>
         </BrowserRouter>
     </Provider>
     , document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
