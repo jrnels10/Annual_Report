@@ -7,7 +7,7 @@ export default class TwoBtnSet extends Component {
             <Consumer>
                 {value => {
                     return <div className="twobtnset">
-                        <button className="btn btn-primary">Add</button>
+                        <button className="btn btn-primary">{this.props.data.btnText}</button>
                         <button className="btn btn-danger">Cancel</button>
                     </div>
                 }}
