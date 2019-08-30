@@ -1,6 +1,7 @@
 import React from "react"
-import Navbar from "./components/navbar/Navbar"
+import Navbar from "../navbar/Navbar"
 import './App.css'
+
 export default (props) => {
   return (
     <div className='h-100 w-100 container-fluid ' id='app-div'>
