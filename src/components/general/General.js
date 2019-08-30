@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Consumer } from './../../Context';
+// import axios from 'axios'
 
 
 export default class General extends Component {
@@ -12,11 +13,11 @@ export default class General extends Component {
    
 
     onChange = (e) => {
-        // console.log(e.target.value)
         this.setState({ [e.target.name]: e.target.value })
     }
     validatePCC=()=>{
         console.log("validate")
+
     }
 
     render() {
