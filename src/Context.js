@@ -21,6 +21,5 @@ export class Provider extends Component {
         );
     }
 }
-
-Provider.propTypes = {};
+export const Consumer = Context.Consumer;
 

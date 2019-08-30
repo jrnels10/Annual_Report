@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from './Context';
-import General from './components/General';
+import General from './components/general/General';
 import Withdrawn from './components/Withdrawn';
 import Summary from './components/Summary';
 
