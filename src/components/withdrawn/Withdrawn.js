@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Consumer } from '../../Context';
+import TwoBtnSet from '../twoBtnSet/TwoBtnSet'
 
 export default class Withdrawn extends Component {
 
@@ -52,6 +53,7 @@ export default class Withdrawn extends Component {
                             <div className="row col-md-12">
                                 <textarea placeholder="Comments"></textarea>
                             </div>
+                            <div className="row"><TwoBtnSet/></div>
                         </div>
                         <div class="col-md-4"></div>
                     </div>
