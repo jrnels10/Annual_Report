@@ -44,7 +44,15 @@ export default class Details extends Component {
 
     async componentDidMount() {
         let value = this.context;
+<<<<<<< HEAD
         await lookUpDetails(this.state.ownerInfo.ProgramCertificateConveyanceNumber).then(response => {
+=======
+        debugger;
+        this.setState({ ownerInfo: value.lookupdata })
+        await lookUpDetails(value.filer.pcc).then(response => {
+            console.log(response)
+            // this.setState({ pccValidate: true })
+>>>>>>> a183819f040ea1a63768cba993757d681fca7f1b
             value.dispatch({
                 type: "LOOKUP_DATA_DETAILS",
                 payload: {

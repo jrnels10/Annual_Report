@@ -1,27 +1,20 @@
 import React, { Component } from 'react';
 import { Consumer } from '../../Context';
+import Input from './input/Input'
 
 export default class Withdrawn extends Component {
+
+    onUpdate = (e) => {
+        this.setState({ [e.target.name]: e.target.value })
+    }
+
     render() {
         return (
             <Consumer>
                 {value => {
                     const { dispatch } = value;
 
-                    return <div className="row">
-                        <div className="col-md-4">
-                            <h6>Add a new Record</h6>
-                            <hr/>
-                            <div className="row">
-                                <label>
-                                    <input type="radio"></input>
-                                    Single Well Reading
-                                </label>
-                            </div>
-                            <input type="text" placeholder="Well # 55-XXXXXX"></input>
-                        </div>
-                        <div class="col-md-4"></div>
-                    </div>
+                    return <Input/>
                 }}
             </Consumer>
         )
