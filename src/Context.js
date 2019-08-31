@@ -3,6 +3,12 @@ const Context = React.createContext();
 export const Conxt = Context;;
 const reducer = (state, action) => {
     switch (action.type) {
+        case 'CURRENT_PAGE':
+            // debugger
+            return {
+                ...state,
+                currentPage: action.payload.currentPage
+            }
         case 'LOOKUP_DATA':
             return {
                 ...state,
@@ -46,6 +52,7 @@ export class Provider extends Component {
             Well: "Y",
             Zip: "86413"
         },
+        currentPage: '',
         lookupdatadetails: '',
         filer: '',
         dispatch: action => this.setState(state => reducer(state, action))

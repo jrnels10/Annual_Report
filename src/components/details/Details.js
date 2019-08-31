@@ -11,8 +11,9 @@ export default class Details extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            currentPage: 'details',
             withdrawn: false,
-            received:false
+            received: false
         };
 
     }
@@ -26,11 +27,17 @@ export default class Details extends Component {
         let value = this.context;
         await lookUpDetails(value.lookupdata.ProgramCertificateConveyanceNumber).then(response => {
             value.dispatch({
+                type: "CURRENT_PAGE",
+                payload: {
+                    currentPage: this.state.currentPage
+                }
+            })
+            value.dispatch({
                 type: "LOOKUP_DATA_DETAILS",
                 payload: {
                     lookupdatadetails: response.data
                 }
-            })
+            });
         })
     }
 
@@ -48,12 +55,12 @@ export default class Details extends Component {
         return (
             <Consumer>
                 {value => {
-                    const {dispatch} = value;
+                    const { dispatch } = value;
+
                     const { Name, WaterRightFacilityName, ADEQName, Address, City, State, ProgramCertificateConveyanceNumber, Zip } = value.lookupdata;
 
                     const title = this.state.ownerInfo ? this.state.ownerInfo.ProgramCertificateConveyanceNumber : '';
                     return <div className='row'>
-                        <div className='col-12 pcc-span bg-dark text-white'>{title}</div>
                         <div className='col-6 owner-details'>
                             <table className="table-sm table-striped">
                                 <tbody>

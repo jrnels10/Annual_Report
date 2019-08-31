@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
-import { Consumer } from './../../Context';
+import { Consumer,Conxt } from './../../Context';
 import { lookUpData } from './../../utils/API';
 
 
 export default class General extends Component {
     state = {
+        currentPage:'General',
         pcc: '',
         email: '',
         name: '',
         title: '',
         pccValidate: false
     }
-
+    componentDidMount() {
+        let value = this.context;
+        value.dispatch({
+            type: "CURRENT_PAGE",
+            payload: {
+                currentPage: this.state.currentPage
+            }
+        })
+    }
 
     onUpdate = (e) => {
         this.setState({ [e.target.name]: e.target.value })
@@ -43,6 +52,15 @@ export default class General extends Component {
             }
         });
         this.props.history.push('/details');
+    };
+
+    currentPage = (dispatch) => {
+        dispatch({
+            type: "CURRENT_PAGE",
+            payload: {
+                currentPage: this.state.currentPage
+            }
+        });
     }
 
     render() {
@@ -50,8 +68,8 @@ export default class General extends Component {
             <Consumer>
                 {value => {
                     const { dispatch } = value;
-                    
-                    return <div className='row'>
+
+                    return <div onLoad={this.currentPage.bind(this, dispatch)} className='row'>
                         <div className="input-group input-group-sm mb-3">
                             <span>PCC</span>
                             <input type="text" name='pcc' onChange={this.onUpdate.bind(this)} onBlur={this.validatePCC.bind(this, dispatch)} className="form-control w-100" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" />
@@ -65,10 +83,10 @@ export default class General extends Component {
                                 <span>Title</span>
                                 <input type="text" name='title' onChange={this.onUpdate.bind(this)} className="form-control float-right" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" />
                             </div>
-                    {this.state.pccValidate ?
-                            <button className='btn btn-primary float-right' onClick={this.submitFiler.bind(this, dispatch)}>Next</button>
-                            :null
-                    }
+                            {this.state.pccValidate ?
+                                <button className='btn btn-primary float-right' onClick={this.submitFiler.bind(this, dispatch)}>Next</button>
+                                : null
+                            }
                         </div>
 
                     </div>
@@ -78,3 +96,4 @@ export default class General extends Component {
         )
     }
 }
+General.contextType = Conxt;
