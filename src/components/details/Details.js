@@ -11,48 +11,20 @@ export default class Details extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ownerInfo: {
-                ADEQName: "AZ0408038",
-                Address: "5998 W CHINO DRIVE",
-                AddressLine2: null,
-                Amended: "https://docushare.azwater.gov/docushare/dsweb/Get/CWSDoc-9706/3859d7d0-e1f4-4fac-b82e-68a50e79815e.pdf",
-                City: "GOLDEN VALLEY",
-                Customer: "Y",
-                Delivered: "Y",
-                DesignatedAdequateWaterSupply: null,
-                Diverted: "Y",
-                Name: "VALLEY PIONEERS WATER CO",
-                ProgramCertificateConveyanceNumber: "91-000326.0000",
-                Received: null,
-                State: "AZ",
-                Storage: "Y",
-                Treatment: "Y",
-                WaterRightFacilityId: 5154800,
-                WaterRightFacilityName: "VALLEY PIONEERS WC, INC",
-                Well: "Y",
-                Zip: "86413"
-            },
-            withdrawn:false
+            withdrawn: false,
+            received:false
         };
 
     }
 
 
     onUpdate = (e) => {
-        this.setState({ [e.target.name]: ![this.state.e.target.name] })
+        this.setState({ [e.target.name]: !this.state[e.target.name] })
     }
 
     async componentDidMount() {
         let value = this.context;
-<<<<<<< HEAD
-        await lookUpDetails(this.state.ownerInfo.ProgramCertificateConveyanceNumber).then(response => {
-=======
-        debugger;
-        this.setState({ ownerInfo: value.lookupdata })
-        await lookUpDetails(value.filer.pcc).then(response => {
-            console.log(response)
-            // this.setState({ pccValidate: true })
->>>>>>> a183819f040ea1a63768cba993757d681fca7f1b
+        await lookUpDetails(value.lookupdata.ProgramCertificateConveyanceNumber).then(response => {
             value.dispatch({
                 type: "LOOKUP_DATA_DETAILS",
                 payload: {
@@ -62,16 +34,11 @@ export default class Details extends Component {
         })
     }
 
-    submitFiler = (dispatch) => {
+    submitPages = (dispatch) => {
         dispatch({
-            type: "FILER",
+            type: "PAGES",
             payload: {
-                filer: {
-                    pcc: this.state.pcc,
-                    email: this.state.email,
-                    name: this.state.name,
-                    title: this.state.title
-                }
+                pages: this.state
             }
         });
         this.props.history.push('/withdrawn');
@@ -81,7 +48,8 @@ export default class Details extends Component {
         return (
             <Consumer>
                 {value => {
-                    const { Name, WaterRightFacilityName, ADEQName, Address, AddressLine2, City, State, ProgramCertificateConveyanceNumber, Zip } = this.state.ownerInfo
+                    const {dispatch} = value;
+                    const { Name, WaterRightFacilityName, ADEQName, Address, City, State, ProgramCertificateConveyanceNumber, Zip } = value.lookupdata;
 
                     const title = this.state.ownerInfo ? this.state.ownerInfo.ProgramCertificateConveyanceNumber : '';
                     return <div className='row'>
@@ -125,8 +93,9 @@ export default class Details extends Component {
                             </table>
                         </div>
                         <div className='col-6 question-details '>
-                            <Questions data={this.state} update={this.onUpdate} value={value}/>
+                            <Questions data={this.state} update={this.onUpdate} value={value} />
                         </div>
+                        <button className='btn btn-primary float-right' onClick={this.submitPages.bind(this, dispatch)}>Next</button>
 
                     </div>
 

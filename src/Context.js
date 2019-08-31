@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 const Context = React.createContext();
-export const Conxt=Context;;
+export const Conxt = Context;;
 const reducer = (state, action) => {
     switch (action.type) {
         case 'LOOKUP_DATA':
@@ -16,7 +16,7 @@ const reducer = (state, action) => {
         case 'FILER':
             return {
                 ...state,
-                filer:action.payload.filer
+                filer: action.payload.filer
             }
         default:
             return state;
@@ -25,9 +25,29 @@ const reducer = (state, action) => {
 
 export class Provider extends Component {
     state = {
-        lookupdata:'',
+        lookupdata: {
+            ADEQName: "AZ0408038",
+            Address: "5998 W CHINO DRIVE",
+            AddressLine2: null,
+            Amended: "https://docushare.azwater.gov/docushare/dsweb/Get/CWSDoc-9706/3859d7d0-e1f4-4fac-b82e-68a50e79815e.pdf",
+            City: "GOLDEN VALLEY",
+            Customer: "Y",
+            Delivered: "Y",
+            DesignatedAdequateWaterSupply: null,
+            Diverted: "Y",
+            Name: "VALLEY PIONEERS WATER CO",
+            ProgramCertificateConveyanceNumber: "91-000326.0000",
+            Received: null,
+            State: "AZ",
+            Storage: "Y",
+            Treatment: "Y",
+            WaterRightFacilityId: 5154800,
+            WaterRightFacilityName: "VALLEY PIONEERS WC, INC",
+            Well: "Y",
+            Zip: "86413"
+        },
         lookupdatadetails: '',
-        filer:'',
+        filer: '',
         dispatch: action => this.setState(state => reducer(state, action))
     }
 
