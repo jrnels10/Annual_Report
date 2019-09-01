@@ -18,7 +18,6 @@ export default class Details extends Component {
     }
     async componentDidMount() {
         let value = this.context;
-        debugger;
         this.setState({ ownerInfo: value.lookupdata })
         await lookUpDetails(value.filer.pcc).then(response => {
             console.log(response)
