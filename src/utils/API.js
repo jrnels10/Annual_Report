@@ -5,3 +5,6 @@ export function lookUpData(pcc) {
 export function lookUpDetails(pcc) {
     return Axios.post(`https://test.azwater.gov/annualreport/community/lookupdetails?id=${pcc}`);
 }
+export function wellValidation(wellNumber) {
+    return Axios.post(`https://test.azwater.gov/AnnualReport/Community/CheckWell?id=${wellNumber}`);
+}
