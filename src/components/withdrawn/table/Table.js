@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
 
 export default class Table extends Component {
-    headers = ['Well Registry', 'Quantity', 'Units', 'Metered/Estimated', 'How Estimated', 'Comments'];
-    numCol = this.headers.map((item) => ({item: ("col-md- " + item.length)}));
+    headers = this.props.headers;
+    trStyle = {borderBottom: '2px solid black'};
     render(){
         return(
             <React.Fragment>
                 <div className="row">
-                    <h6>Report Information</h6>
+                    <h6>{this.props.tableName}</h6>
                 <hr/>
                 </div>
                 <div className="row">
-                    {this.headers.map((value, index) => (
-                        <p className='col-md-' key={index}>{value}</p>
-                    ))}
+                <table style={{width: '100%'}}>
+                    <thead>
+                        <tr>
+                        {this.headers.map((value, index) => (
+                        <th key={index} style={this.trStyle} className="text-center">{value}</th>
+                        ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    </table>
                 </div>
             </React.Fragment>
         )
