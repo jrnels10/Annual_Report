@@ -12,7 +12,7 @@ export default class Withdrawn extends Component {
                 {value => {
 
                     return (
-                        <div className="row">
+                        <div className="row w-100">
                             <div className="col-md-5"><Input onchange={this.myTest}/></div>
                             <div className="col-md-7"><Table headers={this.headers} tableName={'Report Information'}/></div>
                         </div>

@@ -11,7 +11,7 @@ export default class Table extends Component {
                 <hr/>
                 </div>
                 <div className="row">
-                <table style={{width: '100%'}}>
+                <table className="w-100">
                     <thead>
                         <tr>
                         {this.headers.map((value, index) => (
