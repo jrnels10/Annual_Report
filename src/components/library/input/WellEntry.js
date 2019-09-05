@@ -33,7 +33,7 @@ export default class WellEntry extends Component {
     };
 
     render() {
-        console.log(this.props)
+        // console.log(this.props)
         // const { reset } = this.props.parentState;
         // this.handleReset(reset);
         return <div className='row w-100'>

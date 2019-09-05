@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Consumer, Conxt } from './../../Context';
 import { lookUpDetails } from './../../utils/API';
 import Questions from './Questions';
+import NextPage from './../library/navigation/NextPage';
 
 
 import './details.css'
@@ -41,15 +42,7 @@ export default class Details extends Component {
         })
     }
 
-    submitPages = (dispatch) => {
-        dispatch({
-            type: "PAGES",
-            payload: {
-                pages: this.state
-            }
-        });
-        this.props.history.push('/withdrawn');
-    }
+
 
     render() {
         return (
@@ -102,7 +95,7 @@ export default class Details extends Component {
                         <div className='col-6 question-details '>
                             <Questions data={this.state} update={this.onUpdate} value={value} />
                         </div>
-                        <button className='btn btn-primary float-right' onClick={this.submitPages.bind(this, dispatch)}>Next</button>
+                        <NextPage data={this} action={"PAGES"} payload={{test:'test'}} next={"withdrawn"}/>
 
                     </div>
 
