@@ -90,29 +90,12 @@ export default class Withdrawn extends Component {
                 {value => {
                     return (
                         <div className="row w-100">
-<<<<<<< HEAD
                             <div className="col-md-5">
-                                <div className="container">
-                                    <div className="row">
-                                        <label className="col-md-7">
-                                            <input type="radio"></input>
-                                            Single Well Reading
-                                        </label>
-                                        <label className="col-md-5">
-                                            <input type="radio"></input>
-                                            Well Groups
-                                        </label>
-                                    </div>
-                                    <WellEntry wellList={this.wellList} parentState={this.state.input} />
-                                    <WaterQuantityInfo />
-=======
-                            <div className="col-md-6">
                                 <div className="row">
                                     <span>Single Well</span>
                                     <input type="radio" name='singleWell' checked={!this.state.input.singleWell} onChange={this.onSelected} />
                                     <span>Multiple Wells</span>
                                     <input type="radio" name='singleWell' checked={this.state.input.singleWell} onChange={this.onSelected} />
->>>>>>> 3f64dd7f6383b71a6e16d2e29fec1b3ccc4498d2
                                 </div>
                                 <WellEntry waterData={this.waterData} parentState={this.state.input} />
                                 <WaterQuantityInfo waterData={this.waterData} parentState={this.state.input} />
