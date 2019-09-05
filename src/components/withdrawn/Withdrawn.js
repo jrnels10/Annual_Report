@@ -1,67 +1,103 @@
 import React, { Component } from 'react';
-import { Consumer,Conxt } from '../../Context';
+import { Consumer, Conxt } from '../../Context';
 import Input from './input/Input';
 import Table from './table/Table'
 import WellEntry from '../library/input/WellEntry';
 import WaterQuantityInfo from '../library/input/WaterQuantityInfo';
+import InputButton from '../library/input/InputButton';
+
+const intialState = {
+    input: {
+        reset:false,
+        singleWell: true,
+        wellRegistry: '',
+        quantity: '',
+        units: 'ac-ft',
+        metered: true,
+        howEstimated: '',
+        comments: ''
+    }
+}
 
 export default class Withdrawn extends Component {
     state = {
-        currentPage:'Withdrawn',
-        add:false,
-        update:false,
-        delete:false,
+        currentPage: 'Withdrawn',
+        addButtonTerm: 'Add',
+        add: false,
+        update: false,
+        delete: false,
         input: {
+            reset:false,
+            singleWell: true,
             wellRegistry: '',
             quantity: '',
             units: 'ac-ft',
-            meteredEstimated: 'Metered',
+            metered: true,
             howEstimated: '',
             comments: ''
         },
         table: {}
     }
-    wellList = (wells) => {
+    handleReset = () => {
+        // this.setState({ input: intialState.input });
+    };
+
+    waterData = (stateKey, wtr) => {
         this.setState(prevState => ({
             input: {
                 ...prevState.input,
-                wellRegistry: wells
+                [stateKey]: wtr
             }
         }))
     }
     componentDidMount() {
         let value = this.context;
-        this.setState({table:{}})
+        this.setState({ table: {} })
         value.dispatch({
             type: "CURRENT_PAGE",
             payload: {
                 currentPage: this.state.currentPage
             }
         })
+    };
+
+    onSelected = (e) => {
+        return e.target.name === "singleWell" ? this.setState(prevState => ({
+            input: {
+                ...prevState.input,
+                singleWell: !this.state.input.singleWell
+            }
+        })) : null;
+    };
+
+    submitInputToTable = () => {
+        debugger
+        this.setState(prevState => ({
+            add:true,
+            input: {
+                ...prevState.input,
+                reset: true
+            }
+        }),this.handleReset())
+        
     }
 
     render() {
         return (
             <Consumer>
                 {value => {
-                    console.log(value)
                     return (
                         <div className="row w-100">
                             <div className="col-md-6">
-                                <div className="container">
-                                    <div className="row">
-                                        <label className="col-md-7">
-                                            <input type="radio"></input>
-                                            Single Well Reading
-                                        </label>
-                                        <label className="col-md-5">
-                                            <input type="radio"></input>
-                                            Well Groups
-                                        </label>
-                                    </div>
-                                    <WellEntry wellList={this.wellList} parentState={this.state.input} />
-                                    <WaterQuantityInfo />
+                                <div className="row">
+                                    <span>Single Well</span>
+                                    <input type="radio" name='singleWell' checked={!this.state.input.singleWell} onChange={this.onSelected} />
+                                    <span>Multiple Wells</span>
+                                    <input type="radio" name='singleWell' checked={this.state.input.singleWell} onChange={this.onSelected} />
                                 </div>
+                                <WellEntry waterData={this.waterData} parentState={this.state.input} />
+                                <WaterQuantityInfo waterData={this.waterData} parentState={this.state.input} />
+                                <InputButton submit={this.submitInputToTable} waterData={this.waterData} parentState={this.state} />
                             </div>
                             <div className="col-md-6"><Table /></div>
                         </div>
