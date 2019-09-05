@@ -21,7 +21,7 @@ export default class Withdrawn extends Component {
         },
         table: {
             headers: ['', 'Well Registry', 'Quantity', 'Units', 'Metered/ Estimated', 'How Estimated', 'Comments'],
-            tableName: 'Report curly'
+            tableName: 'Report Information'
         }
     }
     wellList = (wells) => {
@@ -65,7 +65,7 @@ export default class Withdrawn extends Component {
                                     <WaterQuantityInfo />
                                 </div>
                             </div>
-                            <div className="col-md-7"><Table parentData={this.state.table}/></div>
+                            <div className="col-md-7"><Table parentData={this.state}/></div>
                         </div>
                     )
                 }}
