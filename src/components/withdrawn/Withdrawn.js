@@ -5,10 +5,12 @@ import Table from './table/Table'
 import WellEntry from '../library/input/WellEntry';
 import WaterQuantityInfo from '../library/input/WaterQuantityInfo';
 import InputButton from '../library/input/InputButton';
+import NextPage from '../library/navigation/NextPage';
+
 
 const intialState = {
     input: {
-        reset:false,
+        reset: false,
         singleWell: true,
         wellRegistry: '',
         quantity: '',
@@ -22,12 +24,11 @@ const intialState = {
 export default class Withdrawn extends Component {
     state = {
         currentPage: 'Withdrawn',
-        addButtonTerm: 'Add',
         add: false,
         update: false,
         delete: false,
         input: {
-            reset:false,
+            reset: false,
             singleWell: true,
             wellRegistry: '',
             quantity: '',
@@ -76,19 +77,20 @@ export default class Withdrawn extends Component {
     submitInputToTable = () => {
         debugger
         this.setState(prevState => ({
-            add:true,
+            add: true,
             input: {
                 ...prevState.input,
                 reset: true
             }
-        }),this.handleReset())
-        
+        }), this.handleReset())
+
     }
     render() {
         return (
             <Consumer>
                 {value => {
-                    return (
+                    return (<React.Fragment>
+
                         <div className="row w-100">
                             <div className="col-md-5">
                                 <div className="row">
@@ -103,6 +105,8 @@ export default class Withdrawn extends Component {
                             </div>
                             <div className="col-md-7"><Table parentData={this.state}/></div>
                         </div>
+                        <NextPage data={this} action={"PAGES"} payload={{test:'test'}} next={"general"}/>
+                    </React.Fragment>
                     )
                 }}
             </Consumer>

@@ -20,7 +20,7 @@ export default class InputButton extends Component {
 
         return <div className='row w-100'>
             <button className='btn btn-danger'>Cancel</button>
-            <button className='btn btn-primary' onClick={this.props.submit}>{this.props.parentState.addButtonTerm}</button>
+            <button className='btn btn-primary' onClick={this.props.submit}>{this.props.parentState.update?"Update":"Add"}</button>
         </div>
     }
 }

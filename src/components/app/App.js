@@ -11,14 +11,15 @@ export default (props) => {
         const title = value.lookupdata.ProgramCertificateConveyanceNumber ? value.lookupdata.ProgramCertificateConveyanceNumber : null;
         return <div className='h-100 w-100 container-fluid ' id='app-div'>
           <Navbar />
-          <div className="jumbotron w-75 m-auto bg-light pt-1">
+          <div className="jumbotron w-50 m-auto bg-light pt-1 pb-2">
             <h4>WELCOME TO THE ARIZONA DEPARTMENT OF WATER RESOURCES</h4>
             <h6>2018 ELECTRONIC ANNUAL REPORT PROCESS</h6>
             <hr></hr>
             {value.currentPage === "General" ? null :
-              <div className='col-12 pcc-span bg-dark text-white'>{title}{value.currentPage === "details" ? null : <Navigation navigate={value.currentPage}/>}</div>
+              <div className='col-12 pcc-span bg-dark text-white'>{title}{value.currentPage === "details" ? null : <Navigation navigate={value.currentPage} />}</div>
             }
             {props.children}
+            
           </div>
         </div>
       }}
