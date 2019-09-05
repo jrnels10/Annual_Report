@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Consumer,Conxt } from './../../Context';
+import { Consumer, Conxt } from './../../Context';
 import { lookUpData } from './../../utils/API';
+import NextPage from './../library/navigation/NextPage';
 
 
 export default class General extends Component {
     state = {
-        currentPage:'General',
+        currentPage: 'General',
         pcc: '',
         email: '',
         name: '',
@@ -79,12 +80,22 @@ export default class General extends Component {
                                 <span>Name</span>
                                 <input type="text" name='name' onChange={this.onUpdate.bind(this)} className="form-control float-left" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" />
                             </div>
-                            <div className='col-6 p-0'>
+                            <div className='col-6 p-0 mb-3'>
                                 <span>Title</span>
                                 <input type="text" name='title' onChange={this.onUpdate.bind(this)} className="form-control float-right" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" />
                             </div>
                             {this.state.pccValidate ?
-                                <button className='btn btn-primary float-right' onClick={this.submitFiler.bind(this, dispatch)}>Next</button>
+                                <NextPage 
+                                data={this} 
+                                action={"FILER"} 
+                                payload={{
+                                    filer: {
+                                        pcc: this.state.pcc,
+                                        email: this.state.email,
+                                        name: this.state.name,
+                                        title: this.state.title
+                                    }
+                                }} next={"details"} />
                                 : null
                             }
                         </div>
