@@ -7,8 +7,6 @@ import WaterQuantityInfo from '../library/input/WaterQuantityInfo';
 
 export default class Withdrawn extends Component {
     state = {
-<<<<<<< HEAD
-=======
         currentPage:'Withdrawn',
         add:false,
         update:false,
@@ -21,7 +19,10 @@ export default class Withdrawn extends Component {
             howEstimated: '',
             comments: ''
         },
-        table: {}
+        table: {
+            headers: ['', 'Well Registry', 'Quantity', 'Units', 'Metered/ Estimated', 'How Estimated', 'Comments'],
+            tableName: 'Report curly'
+        }
     }
     wellList = (wells) => {
         this.setState(prevState => ({
@@ -41,10 +42,6 @@ export default class Withdrawn extends Component {
             }
         })
     }
->>>>>>> a4b5330003c0cac17eb0114c116d83f9e94196f1
-
-    };
-    headers = ['', 'Well Registry', 'Quantity', 'Units', 'Metered/ Estimated', 'How Estimated', 'Comments'];
     render() {
         return (
             <Consumer>
@@ -68,7 +65,7 @@ export default class Withdrawn extends Component {
                                     <WaterQuantityInfo />
                                 </div>
                             </div>
-                            <div className="col-md-7"><Table headers={this.headers} tableName={'Report Information'}/></div>
+                            <div className="col-md-7"><Table parentData={this.state.table}/></div>
                         </div>
                     )
                 }}

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
 export default class Table extends Component {
-    headers = this.props.headers;
+    headers = this.props.parentData.headers;
     trStyle = {borderBottom: '2px solid black'};
     render(){
         return(
             <React.Fragment>
                 <div className="row">
-                    <h6>{this.props.tableName}</h6>
+                    <h6>{this.props.parentData.tableName}</h6>
                 <hr/>
                 </div>
                 <div className="row">
