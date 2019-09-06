@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 
 export default class Table extends Component {
     state = {
-        
+        tableRows: []
     }
     headers = this.props.parentData.table.headers;
     parentState = this.props.parentData;
     trStyle = {borderBottom: '2px solid black'};
+
     render(){
         return(
             <React.Fragment>
@@ -24,7 +25,12 @@ export default class Table extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {}
+                        {this.props.parentData.input.map((row, index) => {
+                            <tr key={index}>
+                                <td>{row.wellRegistry}</td>
+                                <td>{row.wellRegistry}</td>
+                            </tr>
+                        })}
                     </tbody>
                     </table>
                 </div>

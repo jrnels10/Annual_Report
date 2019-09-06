@@ -6,6 +6,7 @@ import WellEntry from '../library/input/WellEntry';
 import WaterQuantityInfo from '../library/input/WaterQuantityInfo';
 import InputButton from '../library/input/InputButton';
 import NextPage from '../library/navigation/NextPage';
+import { lookUpDetails } from '../../utils/API';
 
 
 const intialState = {
@@ -103,7 +104,7 @@ export default class Withdrawn extends Component {
                                 <WaterQuantityInfo waterData={this.waterData} parentState={this.state.input} />
                                 <InputButton submit={this.submitInputToTable} waterData={this.waterData} parentState={this.state} />
                             </div>
-                            <div className="col-md-7"><Table parentData={this.state}/></div>
+                            <div className="col-md-7"><Table parentData={this.state} backfill={value.lookUpDetails.reportDetails}/></div>
                         </div>
                         <NextPage data={this} action={"PAGES"} payload={{test:'test'}} next={"general"}/>
                     </React.Fragment>
